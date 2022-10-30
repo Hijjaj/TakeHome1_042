@@ -31,27 +31,27 @@ public class Controller {
     }
     @PostMapping("/save")
     public String save(
-            @RequestParam("nama") String name,
-            @RequestParam("lokasi") String location,
-            @RequestParam("gambar") MultipartFile photo,
+            @RequestParam("nama") String nama,
+            @RequestParam("lokasi") String lokasi,
+            @RequestParam("gambar") MultipartFile gambar,
             ModelMap model){
         
         Index index = new Index();
-        index.setName(name);
-        index.setLocation(location);
-        model.addAttribute("nama", name);
-        model.addAttribute("lokasi", location);
+        index.setNama(nama);
+        index.setLokasi(lokasi);
+        model.addAttribute("nama", nama);
+        model.addAttribute("lokasi", lokasi);
         
         ;
-        if (photo.isEmpty()){
+        if (gambar.isEmpty()){
             return "index";
         }
         Path path = Paths.get("uploads/");
         try{
-            InputStream inputStream = photo.getInputStream();
-            Files.copy(inputStream, path.resolve(photo.getOriginalFilename()),
+            InputStream inputStream = gambar.getInputStream();
+            Files.copy(inputStream, path.resolve(gambar.getOriginalFilename()),
                     StandardCopyOption.REPLACE_EXISTING);
-            index.setPhoto(photo.getOriginalFilename().toLowerCase());
+            index.setGambar(gambar.getOriginalFilename().toLowerCase());
             //
             model.addAttribute("INFOR", index);
         }catch (Exception e) {
