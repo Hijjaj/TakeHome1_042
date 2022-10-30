@@ -7,7 +7,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import static jdk.nashorn.internal.objects.ArrayBufferView.buffer;
 import static org.apache.tomcat.jni.Shm.buffer;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.MediaType;
@@ -24,7 +23,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
  */
 @Controller
 public class GambarController {
-    @RequestMapping(value = "getGambar/{gambar}", method = RequestMethod.GET)
+    @RequestMapping(value = "getimage/{gambar}", method = RequestMethod.GET)
     @ResponseBody
     public ResponseEntity<ByteArrayResource> getImage(@PathVariable("gambar")String gambar) throws IOException{
         if (!gambar.equals("")|| gambar !=null) {
